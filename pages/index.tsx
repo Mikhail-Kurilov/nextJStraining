@@ -3,8 +3,12 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 
+class MyC {
+  searchTerm: any;
+}
+
 export default function Home(initialData: any) {
-  const [formInputs, setFormInputs] = useState({});
+  const [formInputs, setFormInputs] = useState(new MyC());
   const [searchTerm, setSearchTerm] = useState("Movies");
   const [searchResults, setSearchResults] = useState([]);
 
@@ -20,9 +24,10 @@ export default function Home(initialData: any) {
 
   const search = async (event: any) => {
     event.preventDefault()
-    let IMDb = await fetch(`https://imdb8.p.rapidapi.com/auto-complete?q=${formInputs.searchTerm}`)
-    IMDb = await IMDb.json()
-    setSearchResults(IMDb.d)
+    let IMDb = await fetch(`https://imdb8.p.rapidapi.com/auto-complete?q=${formInputs.searchTerm}`, options)
+    let json = await IMDb.json()
+    console.log(IMDb)
+    setSearchResults(json.d)
     setSearchTerm(formInputs.searchTerm)
   }
 
