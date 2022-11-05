@@ -3,12 +3,8 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import Footer from "../components/Footer";
 
-class MyC {
-  searchTerm: any;
-}
-
 export default function Home(initialData: any) {
-  const [formInputs, setFormInputs] = useState(new MyC());
+  const [formInputs, setFormInputs] = useState<any>({});
   const [searchTerm, setSearchTerm] = useState("Movies");
   const [searchResults, setSearchResults] = useState([]);
 
